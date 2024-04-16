@@ -20,8 +20,25 @@ namespace CollectionViewPerformanceMaui.Models
 
 		public List<string> Reviews { get; set; } = new();
 
+		public bool HasReview1 => Reviews.Count >= 1;
+		public bool HasReview2 => Reviews.Count >= 2;
+		public bool HasReview3 => Reviews.Count >= 3;
+
+		public string? Review1 => HasReview1 ? Reviews[0] : null;
+		public string? Review2 => HasReview2 ? Reviews[1] : null;
+		public string? Review3 => HasReview3 ? Reviews[2] : null;
+		
+
         public List<string> SocialMedia { get; set; } = new();
 
+        public bool HasSocial1 => SocialMedia.Count >= 1;
+        public bool HasSocial2 => SocialMedia.Count >= 2;
+        public bool HasSocial3 => SocialMedia.Count >= 3;
+        
+        public string? Social1 => HasReview1 ? SocialMedia[0] : null;
+        public string? Social2 => HasReview2 ? SocialMedia[1] : null;
+        public string? Social3 => HasReview3 ? SocialMedia[2] : null;
+        
         public Data()
 		{
 			var random = new Random();

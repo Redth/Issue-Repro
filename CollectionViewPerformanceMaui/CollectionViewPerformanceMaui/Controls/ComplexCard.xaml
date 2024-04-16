@@ -4,8 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:CollectionViewPerformanceMaui.Controls"
+    xmlns:models="clr-namespace:CollectionViewPerformanceMaui.Models"
+    x:DataType="models:Data"
     x:Class="CollectionViewPerformanceMaui.Controls.ComplexCard"
-    ColumnDefinitions="auto,*"
+    ColumnDefinitions="24,*"
     ColumnSpacing="10">
 
     <Border
@@ -16,9 +18,10 @@
         VerticalOptions="Start"
         HeightRequest="24"
         WidthRequest="24"
-        TranslationY="21" />
+        Margin="0,21,0,0"
+         />
 
-    <BoxView
+    <ContentView
         BackgroundColor="#FDB358"
         WidthRequest="1" />
 
@@ -29,14 +32,16 @@
         Padding="0"
         Margin="0,0,0,15">
         
-        <VerticalStackLayout>
+        <Grid RowDefinitions="5,*">
 
-            <BoxView
+            <ContentView
                 HeightRequest="5"
+                Grid.Row="0"
                 BackgroundColor="#FDB358"
                 VerticalOptions="Start" />
 
             <VerticalStackLayout
+                Grid.Row="1"
                 Margin="10"
                 Spacing="10">
 
@@ -54,42 +59,74 @@
                     FontAttributes="Bold"
                     FontSize="Body" />
 
-                <Grid>
+                <Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto" ColumnSpacing="5">
 
-                    <HorizontalStackLayout
-                        BindableLayout.ItemsSource="{Binding Source.SocialMedia, Source={x:Reference this}}"
-                        Spacing="5">
+                    <Border
+                        Grid.Column="0"
+                        IsVisible="{Binding HasSocial1}"
+                        BackgroundColor="#F9F9F9"
+                        StrokeShape="RoundRectangle 20"
+                        HeightRequest="40"
+                        WidthRequest="40">
 
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate
-                                x:DataType="x:String">
+                        <Label
+                            Text="{Binding Social1}"
+                            FontFamily="FA-B"
+                            FontSize="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center" />
 
-                                <Border
-                                    BackgroundColor="#F9F9F9"
-                                    StrokeShape="RoundRectangle 20"
-                                    HeightRequest="40"
-                                    WidthRequest="40">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding OpenLinkCommand, Source={RelativeSource AncestorType={x:Type controls:ComplexCard}}}" />
+                        </Border.GestureRecognizers>
 
-                                    <Label
-                                        Text="{Binding}"
-                                        FontFamily="FA-B"
-                                        FontSize="20"
-                                        VerticalOptions="Center"
-                                        HorizontalOptions="Center" />
+                    </Border>
+                    <Border
+                        Grid.Column="1"
+                        IsVisible="{Binding HasSocial2}"
+                        BackgroundColor="#F9F9F9"
+                        StrokeShape="RoundRectangle 20"
+                        HeightRequest="40"
+                        WidthRequest="40">
 
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding OpenLinkCommand, Source={RelativeSource AncestorType={x:Type controls:ComplexCard}}}" />
-                                    </Border.GestureRecognizers>
+                        <Label
+                            Text="{Binding Social2}"
+                            FontFamily="FA-B"
+                            FontSize="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center" />
 
-                                </Border>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding OpenLinkCommand, Source={RelativeSource AncestorType={x:Type controls:ComplexCard}}}" />
+                        </Border.GestureRecognizers>
 
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
+                    </Border>
+                    <Border
+                        Grid.Column="2"
+                        IsVisible="{Binding HasSocial3}"
+                        BackgroundColor="#F9F9F9"
+                        StrokeShape="RoundRectangle 20"
+                        HeightRequest="40"
+                        WidthRequest="40">
 
-                    </HorizontalStackLayout>
+                        <Label
+                            Text="{Binding Social3}"
+                            FontFamily="FA-B"
+                            FontSize="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center" />
 
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding OpenLinkCommand, Source={RelativeSource AncestorType={x:Type controls:ComplexCard}}}" />
+                        </Border.GestureRecognizers>
+
+                    </Border>
+                    
                     <Label
+                        Grid.Column="4"
                         Text="{Binding Source.Rating, Source={x:Reference this}}"
                         TextColor="Goldenrod"
                         FontSize="20"
@@ -97,56 +134,122 @@
                         HorizontalOptions="End" />
 
                 </Grid>
+                
+                <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="10">
+                    <Border
+                        Grid.Row="0"
+                        IsVisible="{Binding HasReview1}"
+                        BackgroundColor="#FEE6C8"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="0"
+                        Padding="10">
 
-                <VerticalStackLayout
-                    BindableLayout.ItemsSource="{Binding Source.Reviews, Source={x:Reference this}}"
-                    Spacing="10">
-
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate
-                            x:DataType="x:String">
+                        <Grid
+                            ColumnSpacing="10"
+                            ColumnDefinitions="auto,*">
 
                             <Border
-                                BackgroundColor="#FEE6C8"
-                                StrokeShape="RoundRectangle 15"
+                                Grid.Column="0"
+                                BackgroundColor="#FDB358"
                                 StrokeThickness="0"
-                                Padding="10">
+                                StrokeShape="RoundRectangle 15"
+                                HeightRequest="30"
+                                WidthRequest="30">
 
-                                <Grid
-                                    ColumnSpacing="10"
-                                    ColumnDefinitions="auto,*">
-
-                                    <Border
-                                        Grid.Column="0"
-                                        BackgroundColor="#FDB358"
-                                        StrokeThickness="0"
-                                        StrokeShape="RoundRectangle 15"
-                                        HeightRequest="30"
-                                        WidthRequest="30">
-
-                                        <Label
-                                            Text="★"
-                                            FontSize="20"
-                                            TextColor="#BB4500"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Center"
-                                            TranslationY="-2" />
-
-                                    </Border>
-
-                                    <Label
-                                        Grid.Column="1"
-                                        Text="{Binding}" />
-
-                                </Grid>
+                                <Label
+                                    Text="★"
+                                    FontSize="20"
+                                    TextColor="#BB4500"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    TranslationY="-2" />
 
                             </Border>
 
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Review1}" />
 
-                </VerticalStackLayout>
+                        </Grid>
 
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        IsVisible="{Binding HasReview2}"
+                        BackgroundColor="#FEE6C8"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="0"
+                        Padding="10">
+
+                        <Grid
+                            ColumnSpacing="10"
+                            ColumnDefinitions="auto,*">
+
+                            <Border
+                                Grid.Column="0"
+                                BackgroundColor="#FDB358"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 15"
+                                HeightRequest="30"
+                                WidthRequest="30">
+
+                                <Label
+                                    Text="★"
+                                    FontSize="20"
+                                    TextColor="#BB4500"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    TranslationY="-2" />
+
+                            </Border>
+
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Review2}" />
+
+                        </Grid>
+
+                    </Border>
+                    <Border
+                        Grid.Row="2"
+                        IsVisible="{Binding HasReview3}"
+                        BackgroundColor="#FEE6C8"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="0"
+                        Padding="10">
+
+                        <Grid
+                            ColumnSpacing="10"
+                            ColumnDefinitions="auto,*">
+
+                            <Border
+                                Grid.Column="0"
+                                BackgroundColor="#FDB358"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 15"
+                                HeightRequest="30"
+                                WidthRequest="30">
+
+                                <Label
+                                    Text="★"
+                                    FontSize="20"
+                                    TextColor="#BB4500"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    TranslationY="-2" />
+
+                            </Border>
+
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Review3}" />
+
+                        </Grid>
+
+                    </Border>
+                </Grid>
+
+               
                 <Grid
                     ColumnSpacing="10"
                     ColumnDefinitions="*,*"
@@ -192,7 +295,7 @@
 
             </VerticalStackLayout>
 
-        </VerticalStackLayout>
+        </Grid>
 
     </controls:Card>
 
