@@ -49,9 +49,14 @@ namespace CollectionViewPerformanceMaui.ViewModels
 	{
 		private readonly IDataService dataService;
 
+		private VlvAdapter adapter;
+		private VlvTemplateSelector templateSelector;
+		
 		public DataViewModel(IDataService dataService)
 		{
 			this.dataService = dataService;
+			adapter = new VlvAdapter(this);
+			templateSelector = new VlvTemplateSelector();
 		}
 
 		[ObservableProperty]

@@ -5,6 +5,7 @@
     xmlns:models="clr-namespace:CollectionViewPerformanceMaui.Models"
     xmlns:controls="clr-namespace:CollectionViewPerformanceMaui.Controls"
     xmlns:viewModels="clr-namespace:CollectionViewPerformanceMaui.ViewModels"
+    xmlns:vlv="clr-namespace:Microsoft.Maui.Controls;assembly=VirtualListView"
     x:Class="CollectionViewPerformanceMaui.Views.DataView"
     x:DataType="viewModels:DataViewModel"
     Title="DataView"
@@ -364,28 +365,48 @@
 
     </ContentPage.Resources>
 
-    <CollectionView
-        ItemsSource="{Binding Data}"
-        ItemTemplate="{StaticResource MyDataTemplateSelector}">
-
-        <CollectionView.Header>
-
+    <vlv:VirtualListView
+        Adapter="{Binding VlvAdapter}"
+        ItemTemplateSelector="{Binding VlvTemplateSelector">
+        <vlv:VirtualListView.GlobalHeader>
             <VerticalStackLayout
                 Spacing="10"
                 Margin="0,10">
-
+    
                 <Label
                     Text="{Binding CurrentTemplate}"
                     FontSize="Title" />
-
+    
                 <ActivityIndicator
                     IsVisible="{Binding IsBusy}"
                     IsRunning="True" />
-
+    
             </VerticalStackLayout>
-
-        </CollectionView.Header>
-
-    </CollectionView>
+        </vlv:VirtualListView.GlobalHeader>
+    </vlv:VirtualListView>
+    
+    <!-- <CollectionView -->
+    <!--     ItemsSource="{Binding Data}" -->
+    <!--     ItemTemplate="{StaticResource MyDataTemplateSelector}"> -->
+    <!-- -->
+    <!--     <CollectionView.Header> -->
+    <!-- -->
+    <!--         <VerticalStackLayout -->
+    <!--             Spacing="10" -->
+    <!--             Margin="0,10"> -->
+    <!-- -->
+    <!--             <Label -->
+    <!--                 Text="{Binding CurrentTemplate}" -->
+    <!--                 FontSize="Title" /> -->
+    <!-- -->
+    <!--             <ActivityIndicator -->
+    <!--                 IsVisible="{Binding IsBusy}" -->
+    <!--                 IsRunning="True" /> -->
+    <!-- -->
+    <!--         </VerticalStackLayout> -->
+    <!-- -->
+    <!--     </CollectionView.Header> -->
+    <!-- -->
+    <!-- </CollectionView> -->
 
 </ContentPage>

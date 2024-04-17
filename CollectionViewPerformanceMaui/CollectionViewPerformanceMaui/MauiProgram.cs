@@ -31,6 +31,7 @@ namespace CollectionViewPerformanceMaui
 					CardHandler.SetupMapper();
 #endif
                 })
+				.UseVirtualListView()
 				.RegisterServices()
 				.RegisterViewModels()
 				.RegisterViews();

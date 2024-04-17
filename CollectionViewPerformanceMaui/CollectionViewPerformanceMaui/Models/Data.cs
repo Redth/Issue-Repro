@@ -8,6 +8,8 @@ namespace CollectionViewPerformanceMaui.Models
 	{
 		public Template Template { get; set; }
 
+		public VlvAdapter Adapter { get; set; } = new VlvAdapter(this);
+		
         public string RestaurantName { get; set; } = string.Empty;
 
         public string RestaurantDescription { get; set; } = string.Empty;
