@@ -27,7 +27,9 @@ namespace CollectionViewPerformanceMaui.ViewModels
         public DataTemplate? CardWithComplexContent { get; set; }
 
         protected override DataTemplate? OnSelectTemplate(object item, BindableObject container)
-		{
+        {
+	        return this.CardWithComplexContent;
+	        
             return ((Data)item).Template switch
             {
                 Template.Card => this.Card,

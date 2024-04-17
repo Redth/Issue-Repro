@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Border
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CollectionViewPerformanceMaui.Controls.ReviewCard"
+
+    BackgroundColor="#FEE6C8"
+    StrokeShape="RoundRectangle 15"
+    StrokeThickness="0"
+    Padding="10">
+
+    <Grid
+        ColumnSpacing="10"
+        ColumnDefinitions="auto,*">
+
+        <Border
+            Grid.Column="0"
+            BackgroundColor="#FDB358"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 15"
+            HeightRequest="30"
+            WidthRequest="30">
+
+            <Label
+                Text="★"
+                FontSize="20"
+                TextColor="#BB4500"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                TranslationY="-2" />
+
+        </Border>
+
+        <Label
+            Grid.Column="1"
+            x:Name="labelReview" />
+
+    </Grid>
+
+</Border>

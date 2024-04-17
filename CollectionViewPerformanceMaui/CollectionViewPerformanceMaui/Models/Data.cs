@@ -20,24 +20,8 @@ namespace CollectionViewPerformanceMaui.Models
 
 		public List<string> Reviews { get; set; } = new();
 
-		public bool HasReview1 => Reviews.Count >= 1;
-		public bool HasReview2 => Reviews.Count >= 2;
-		public bool HasReview3 => Reviews.Count >= 3;
-
-		public string? Review1 => HasReview1 ? Reviews[0] : null;
-		public string? Review2 => HasReview2 ? Reviews[1] : null;
-		public string? Review3 => HasReview3 ? Reviews[2] : null;
-		
-
         public List<string> SocialMedia { get; set; } = new();
 
-        public bool HasSocial1 => SocialMedia.Count >= 1;
-        public bool HasSocial2 => SocialMedia.Count >= 2;
-        public bool HasSocial3 => SocialMedia.Count >= 3;
-        
-        public string? Social1 => HasReview1 ? SocialMedia[0] : null;
-        public string? Social2 => HasReview2 ? SocialMedia[1] : null;
-        public string? Social3 => HasReview3 ? SocialMedia[2] : null;
         
         public Data()
 		{
@@ -51,19 +35,26 @@ namespace CollectionViewPerformanceMaui.Models
 			this.Rating = RandomContentHelper.GenerateRandomRating();
 
             this.Review = RandomContentHelper.GenerateRandomSentence(random.Next(6, 12));
-            this.Reviews = new List<string>()
-            {
-                RandomContentHelper.GenerateRandomSentence(random.Next(6, 12)),
-                RandomContentHelper.GenerateRandomSentence(random.Next(6, 12)),
-                RandomContentHelper.GenerateRandomSentence(random.Next(6, 12))
-            };
 
-			this.SocialMedia = new List<string>()
+            this.Reviews = new List<string>();
+            var reviewCount = random.Next(1, 4);
+            while (Reviews.Count < reviewCount)
+            {
+	            this.Reviews.Add(RandomContentHelper.GenerateRandomSentence(random.Next(6, 12)));
+            };
+            
+            var socialTypes = new []
 			{
 				FontAwesome.Instagram,
 				FontAwesome.Facebook,
 				FontAwesome.Tiktok,
 			};
+			this.SocialMedia = new List<string>();
+			var socialCount = random.Next(1, 4);
+			for (int i = 0; i < socialCount; i++)
+			{
+				SocialMedia.Add(socialTypes[i]);
+			}
 
 			// random.Next(0, 2) == 1; // 50/50 chance
 		}
